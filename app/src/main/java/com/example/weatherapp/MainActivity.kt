@@ -2,7 +2,6 @@ package com.example.weatherapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import com.example.weatherapp.R
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
