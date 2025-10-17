@@ -17,22 +17,25 @@ class MainViewModel : ViewModel() {
     val weather = _weather.asStateFlow()
 
     init {
-        // Ensure everything is properly initialized
         _weather.value = Weather(
             name = "Current Forecast",
             current = listOf(
                 Current(
-                    condition = "Sunny",
-                    temperature = 22,
-                    precipitation = "5mm",
-                    wind = "S 10km/h"
+                    condition = Current.Condition(
+                        text = "Sunny",
+                        icon = "sunny.png",
+                        code = 1000
+                    ),
+                    temp_c = 22,
+                    precip_mm = 2.2,
+                    wind_kph = "S 10km/h"
                 )
             ),
             forecast = listOf(
-                Forecast(LocalDate.of(2025, 10, 8), 22,15,"Sunny", "5mm", "S 10km/h", 60),
-                Forecast(LocalDate.of(2025, 10, 9), 20,12, "Cloudy", "2mm", "SW 12km/h", 55),
-                Forecast(LocalDate.of(2025, 10, 10), 18,16, "Rainy", "10mm", "W 8km/h", 70),
-                Forecast(LocalDate.of(2025, 10, 11), 21,19, "Sunny", "0mm", "S 5km/h", 50)
+                Forecast(LocalDate.of(2025, 10, 8), 22,15,Forecast.Condition("Sunny", "sunny.png", 1000), 2.2, "S 10km/h", 60),
+                Forecast(LocalDate.of(2025, 10, 9), 20,12, Forecast.Condition("Cloudy", "cloudy.png", 1000), 5.3, "SW 12km/h", 55),
+                Forecast(LocalDate.of(2025, 10, 10), 18,16, Forecast.Condition("Rainy", "rainy.png", 1000), 10.2, "W 8km/h", 70),
+                Forecast(LocalDate.of(2025, 10, 11), 21,19, Forecast.Condition("Snowy", "snowy.png", 1000), 0.2, "S 5km/h", 50)
             )
         )
     }

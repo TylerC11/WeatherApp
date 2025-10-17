@@ -36,14 +36,14 @@ fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
         Text(text = weather?.name ?: "Loading...", style = MaterialTheme.typography.headlineLarge)
         Image(
             painter = painterResource(id = R.drawable.sunny),
-            contentDescription = current?.condition ?: "Weather Icon",
+            contentDescription = "Weather Icon",
             modifier = Modifier.size(128.dp)
         )
 
-        Text("Condition: ${current?.condition ?: "--"}")
-        Text("Temperature: ${current?.temperature ?: "--"}°C")
-        Text("Precipitation: ${current?.precipitation ?: "--"}")
-        Text("Wind: ${current?.wind ?: "--"}")
+        Text("Condition: ${current?.condition?.text ?: "--"}")
+        Text("Temperature: ${current?.temp_c ?: "--"}°C")
+        Text("Precipitation: ${current?.precip_mm ?: "--"}")
+        Text("Wind: ${current?.wind_kph ?: "--"}")
     }
 }
 

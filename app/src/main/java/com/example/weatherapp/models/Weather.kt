@@ -10,21 +10,33 @@ data class Weather(
 )
 
 data class Current(
-    val condition: String,
-    val temperature: Int,
-    val precipitation: String,
-    val wind: String,
-)
+    val condition: Condition,
+    val temp_c: Int, //
+    val precip_mm: Double, //
+    val wind_kph: String, //
+) {
+    data class Condition(
+        val text: String,
+        val icon: String,
+        val code: Int
+    )
+}
 
 data class Forecast(
-    val date: LocalDate,
-    val hightemperature: Int,
-    val lowtemperature: Int,
-    val condition: String,
-    val precipitation: String,
-    val wind: String,
-    val humidity: Int
-)
+    val last_updated: LocalDate,
+    val maxtemp_c: Int, //
+    val mintemp_c: Int, //
+    val condition: Condition,
+    val precip_mm: Double, //
+    val wind_kph: String, //
+    val humidity: Int //
+){
+    data class Condition(
+        val text: String,
+        val icon: String,
+        val code: Int
+    )
+}
 
 
 

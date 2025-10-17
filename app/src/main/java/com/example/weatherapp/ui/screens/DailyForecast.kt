@@ -38,7 +38,7 @@ fun DailyForecastScreen(mainViewModel: MainViewModel) {
 @Composable
 fun ForecastItem(forecast: Forecast?) {
 
-    val condition = forecast?.condition?.lowercase() ?: "sunny"
+    val condition = forecast?.condition?.text?.lowercase() ?: "sunny"
     val imageResId = when (condition) {
         "sunny" -> R.drawable.sunny
         "rainy" -> R.drawable.rainy
@@ -55,16 +55,14 @@ fun ForecastItem(forecast: Forecast?) {
     ) {
         Image(
             painter = painterResource(id = imageResId),
-            contentDescription = forecast?.condition ?: "Weather",
+            contentDescription = "Weather",
             modifier = Modifier.size(120.dp)
         )
-        Spacer(Modifier.height(8.dp))
-        Text("Date: ${forecast?.date ?: "--"}")
-        Text("Temperature: High: ${forecast?.hightemperature ?: "--"}°C Low: ${forecast?.lowtemperature?: "--"}°C")
-        Text("Condition: ${forecast?.condition ?: "--"}")
-        Text("Precipitation: ${forecast?.precipitation ?: "--"}")
-        Text("Wind: ${forecast?.wind ?: "--"}")
+        Text("Date: ${forecast?.last_updated ?: "--"}")
+        Text("Temperature: High: ${forecast?.maxtemp_c ?: "--"}°C Low: ${forecast?.mintemp_c ?: "--"}°C")
+        Text("Condition: ${forecast?.condition?.text ?: "--"}")
+        Text("Precipitation: ${forecast?.precip_mm ?: "--"}")
+        Text("Wind: ${forecast?.wind_kph ?: "--"}")
         Text("Humidity: ${forecast?.humidity ?: "--"}")
-        Spacer(Modifier.height(16.dp))
     }
 }
