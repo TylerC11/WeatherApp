@@ -33,7 +33,6 @@ fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = weather?.name ?: "Loading...", style = MaterialTheme.typography.headlineLarge)
         Image(
             painter = painterResource(id = R.drawable.sunny),
             contentDescription = "Weather Icon",
