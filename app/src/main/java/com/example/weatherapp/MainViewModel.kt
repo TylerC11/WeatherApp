@@ -19,6 +19,7 @@ class MainViewModel : ViewModel() {
     private val _weather = MutableStateFlow<Weather?>(null)
     val weather = _weather
 
+
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.weatherapi.com/")
         .addConverterFactory(GsonConverterFactory.create())
