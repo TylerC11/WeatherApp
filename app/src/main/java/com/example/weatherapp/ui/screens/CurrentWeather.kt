@@ -15,16 +15,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.R
 import com.example.weatherapp.MainViewModel
+import com.example.weatherapp.models.Current
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
 
     val weather by mainViewModel.weather.collectAsState()
 
-    val current = weather?.current?.firstOrNull()
+    val current = weather?.current
 
     Column(
         modifier = Modifier
@@ -40,9 +40,10 @@ fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
         )
 
         Text("Condition: ${current?.condition?.text ?: "--"}")
-        Text("Temperature: ${current?.temp_c ?: "--"}°C")
-        Text("Precipitation: ${current?.precip_mm ?: "--"}")
-        Text("Wind: ${current?.wind_kph ?: "--"}")
+        Text("Temperature: ${current?.tempC ?: "--"}°C")
+        Text("Precipitation: ${current?.precipMm ?: "--"}")
+        Text("Wind: ${current?.windKph ?: "--"}")
     }
 }
+
 

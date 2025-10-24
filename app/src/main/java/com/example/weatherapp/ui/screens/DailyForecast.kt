@@ -21,7 +21,6 @@ import com.example.weatherapp.models.Forecast
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DailyForecastScreen(mainViewModel: MainViewModel) {
-
     val weather by mainViewModel.weather.collectAsState()
 
     LazyColumn(
@@ -29,21 +28,20 @@ fun DailyForecastScreen(mainViewModel: MainViewModel) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(weather?.forecast ?: emptyList()) { forecast ->
-            ForecastItem(forecast)
+        val forecastList = weather?.forecast?.forecastDay ?: emptyList()
+        items(forecastList) { forecastDay ->
+            ForecastItem(forecastDay)
         }
     }
 }
-
 @Composable
-fun ForecastItem(forecast: Forecast?) {
-
-    val condition = forecast?.condition?.text?.lowercase() ?: "sunny"
-    val imageResId = when (condition) {
-        "sunny" -> R.drawable.sunny
-        "rainy" -> R.drawable.rainy
-        "cloudy" -> R.drawable.cloudy
-        "snowy" -> R.drawable.snowy
+fun ForecastItem(forecast: Forecast) {
+    val condition = forecast.day.condition.text.lowercase()
+    val imageResId = when {
+        "sun" in condition -> R.drawable.sunny
+        "rain" in condition -> R.drawable.rainy
+        "cloud" in condition -> R.drawable.cloudy
+        "snow" in condition -> R.drawable.snowy
         else -> R.drawable.sunny
     }
 
@@ -58,11 +56,12 @@ fun ForecastItem(forecast: Forecast?) {
             contentDescription = "Weather",
             modifier = Modifier.size(120.dp)
         )
-        Text("Date: ${forecast?.last_updated ?: "--"}")
-        Text("Temperature: High: ${forecast?.maxtemp_c ?: "--"}°C Low: ${forecast?.mintemp_c ?: "--"}°C")
-        Text("Condition: ${forecast?.condition?.text ?: "--"}")
-        Text("Precipitation: ${forecast?.precip_mm ?: "--"}")
-        Text("Wind: ${forecast?.wind_kph ?: "--"}")
-        Text("Humidity: ${forecast?.humidity ?: "--"}")
+
+        Text("Date: ${forecast.date}")
+        Text("Temperature: High: ${forecast.day.maxTempC}°C Low: ${forecast.day.minTempC}°C")
+        Text("Condition: ${forecast.day.condition.text}")
+        Text("Precipitation: ${forecast.day.totalPrecipMm} mm")
+        Text("Wind: ${forecast.day.maxWindKph} kph")
+        Text("Humidity: ${forecast.day.avghumidity}%")
     }
 }

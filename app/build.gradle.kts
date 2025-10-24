@@ -65,4 +65,9 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    // Retrofit GSON Converter
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 }
