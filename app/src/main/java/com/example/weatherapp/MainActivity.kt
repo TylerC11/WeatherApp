@@ -33,9 +33,11 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.weatherapp.models.Current
 import com.example.weatherapp.ui.screens.CurrentWeatherScreen
 import com.example.weatherapp.ui.screens.DailyForecastScreen
 import com.example.weatherapp.ui.theme.WeatherAppTheme
+
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
