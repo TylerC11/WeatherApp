@@ -34,7 +34,7 @@ fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.sunny),
+            painter = painterResource(id = R.drawable.cloudy),
             contentDescription = "Weather Icon",
             modifier = Modifier.size(128.dp)
         )
@@ -42,7 +42,7 @@ fun CurrentWeatherScreen(mainViewModel: MainViewModel) {
         Text("Condition: ${current?.condition?.text ?: "--"}")
         Text("Temperature: ${current?.tempC ?: "--"}°C")
         Text("Precipitation: ${current?.precipMm ?: "--"}")
-        Text("Wind: ${current?.windKph ?: "--"}")
+        Text("Wind: ${current?.windKph ?: "--"}kph")
     }
 }
 
