@@ -33,7 +33,8 @@ data class ForecastContainer(
 
 data class Forecast(
     val date: String,
-    val day: Day
+    val day: Day,
+    val hour: List<Hour>   // ✅ Added this line
 )
 
 data class Day(
@@ -44,6 +45,19 @@ data class Day(
     @SerializedName("totalprecip_mm") val totalPrecipMm: Double,
     @SerializedName("maxwind_kph") val maxWindKph: Double,
     val avghumidity: Double
+) {
+    data class Condition(
+        val text: String,
+        val icon: String,
+        val code: Int
+    )
+}
+
+// ✅ New model for hourly forecast
+data class Hour(
+    val time: String,
+    @SerializedName("temp_c") val tempC: Double,
+    val condition: Condition
 ) {
     data class Condition(
         val text: String,

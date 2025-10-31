@@ -1,8 +1,5 @@
 package com.example.weatherapp.ui.screens
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,13 +9,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.weatherapp.MainViewModel
-import com.example.weatherapp.R
 import com.example.weatherapp.models.Forecast
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DailyForecastScreen(mainViewModel: MainViewModel) {
     val weather by mainViewModel.weather.collectAsState()
@@ -36,24 +31,15 @@ fun DailyForecastScreen(mainViewModel: MainViewModel) {
 }
 @Composable
 fun ForecastItem(forecast: Forecast) {
-    val condition = forecast.day.condition.text.lowercase()
-    val imageResId = when {
-        "sun" in condition -> R.drawable.sunny
-        "rain" in condition -> R.drawable.rainy
-        "cloud" in condition -> R.drawable.cloudy
-        "snow" in condition -> R.drawable.snowy
-        else -> R.drawable.sunny
-    }
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
     ) {
-        Image(
-            painter = painterResource(id = imageResId),
-            contentDescription = "Weather",
+        AsyncImage(
+            model = "https:${forecast.day.condition.icon ?: ""}",
+            contentDescription = forecast.day.condition.text,
             modifier = Modifier.size(120.dp)
         )
 
