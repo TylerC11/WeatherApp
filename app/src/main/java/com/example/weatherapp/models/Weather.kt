@@ -26,17 +26,14 @@ data class Current(
         val code: Int
     )
 }
-
 data class ForecastContainer(
     @SerializedName("forecastday") val forecastDay: List<Forecast>
 )
-
 data class Forecast(
     val date: String,
     val day: Day,
-    val hour: List<Hour>   // ✅ Added this line
+    val hour: List<Hour>
 )
-
 data class Day(
     @SerializedName("maxtemp_c") val maxTempC: Double,
     @SerializedName("mintemp_c") val minTempC: Double,
@@ -52,8 +49,6 @@ data class Day(
         val code: Int
     )
 }
-
-// ✅ New model for hourly forecast
 data class Hour(
     val time: String,
     @SerializedName("temp_c") val tempC: Double,

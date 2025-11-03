@@ -121,7 +121,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     @OptIn(ExperimentalPermissionsApi::class, ExperimentalPermissionsApi::class)
     @Composable
     fun GetLocation() {

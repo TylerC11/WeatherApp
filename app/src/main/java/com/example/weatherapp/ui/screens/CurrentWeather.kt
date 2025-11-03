@@ -89,7 +89,6 @@ fun HourlyWeatherItem(time: String, temperature: Double, iconUrl: String?) {
                 contentDescription = "Hourly icon",
                 modifier = Modifier.size(48.dp)
             )
-
             Text("${temperature}°C")
         }
     }
